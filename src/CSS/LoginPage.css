@@ -1,0 +1,81 @@
+/* LoginPage.css */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    background-color: white;
+    text-align: center;
+  }
+  
+  .login-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #3b82f6; /* Tailwind blue-500 */
+  }
+  
+  .login-subtitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #60a5fa; /* Tailwind blue-400 */
+    margin-top: 8px;
+  }
+  
+  .login-box {
+    background-color: #f3f4f6; /* Tailwind gray-100 */
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 24px;
+    width: 24rem;
+  }
+  
+  .login-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+  }
+  
+  .input-group {
+    margin-bottom: 16px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 1rem;
+    color: #374151; /* Tailwind gray-700 */
+    font-weight: 500;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d1d5db; /* Tailwind gray-300 */
+    border-radius: 6px;
+    margin-top: 4px;
+  }
+  
+  .login-button {
+    width: 100%;
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #2563eb; /* Tailwind blue-600 */
+  }
+  
+  .website-link {
+    margin-top: 16px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: black;
+  }
+  
