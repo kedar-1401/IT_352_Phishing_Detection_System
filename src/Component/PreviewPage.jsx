@@ -44,7 +44,6 @@ const PreviewPage = () => {
       const response1 = await axios.post("http://localhost:5000/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      print(response1)
       const response = 0; // Simulating no response
       
       let modifiedData;

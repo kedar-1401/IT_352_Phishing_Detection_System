@@ -43,36 +43,45 @@ const UploadPage = () => {
       toast.error("Please select a file first.");
       return;
     }
-
+  
     setLoading(true);
-
-    navigate("/preview", { state: { file: selectedFile } });
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/preview", { state: { file: selectedFile } });
+    }, 1000); // 1 second delay
   };
-
+  
   const handleUrlSubmit = async () => {
     if (!isValidUrl(url)) {
       toast.error("Please enter a valid URL.");
       return;
     }
+  
     setLoading(true);
-    try {
-      const response = await fetch("http://localhost:5000/predict", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url }),
-      });
-      const data = await response.json();
-      toast.success("Prediction received successfully!");
-      const trimmedUrl = url.trim();
-      const hasExtraSpaces = url !== trimmedUrl;
-      const prediction = hasExtraSpaces ? "Phishing" : "Benign";
-      navigate("/result", { state: { url, prediction } });
-    } catch (error) {
-      toast.error("Error processing URL. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    setTimeout(async () => {
+      try {
+        const response = await fetch("http://localhost:5000/predict", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url }),
+        });
+  
+        const data = await response.json();
+        toast.success("Prediction received successfully!");
+  
+        const trimmedUrl = url.trim();
+        const hasExtraSpaces = url !== trimmedUrl;
+        const prediction = hasExtraSpaces ? "Phishing" : "Benign";
+  
+        navigate("/result", { state: { url, prediction } });
+      } catch (error) {
+        toast.error("Error processing URL. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    }, 1000); // 1 second delay
   };
+  
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
@@ -96,9 +105,9 @@ const UploadPage = () => {
           Submit URL
         </button>
       </div>
-
+      {loading && <div className="loading-spinner"></div>}
       <h4 className="or">OR</h4>
-
+        
       <div className="upload-card">
         <h3>Upload a CSV File</h3>
         <input type="file" onChange={handleFileChange} className="upload-input" />
@@ -107,7 +116,7 @@ const UploadPage = () => {
         </button>
       </div>
 
-      {loading && <div className="loading-spinner"></div>}
+      
     </div>
   );
 };
