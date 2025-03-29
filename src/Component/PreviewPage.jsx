@@ -41,11 +41,12 @@ const PreviewPage = () => {
       // Simulate API request delay for better UX
       await new Promise((resolve) => setTimeout(resolve, 3000));
 
-      // const response = await axios.post("http://localhost:5000/upload", formData, {
-      //   headers: { "Content-Type": "multipart/form-data" },
-      // });
+      const response1 = await axios.post("http://localhost:5000/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      print(response1)
       const response = 0; // Simulating no response
-
+      
       let modifiedData;
 
       if (response.data && response.data.length > 0) {

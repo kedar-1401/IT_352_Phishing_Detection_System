@@ -8,6 +8,9 @@ const ResultPage = () => {
   const navigate = useNavigate();
   const { url, prediction, csvData } = location.state || {};
 
+  // Function to determine text color
+  const getResultClass = (result) => (result === "Phishing" ? "phishing" : "benign");
+
   return (
     <div className="result-container">
       <h2 className="result-title">Phishing Detection Results</h2>
@@ -16,7 +19,9 @@ const ResultPage = () => {
       {url && prediction ? (
         <div className="result-card">
           <p><strong>URL:</strong> {url}</p>
-          <p><strong>Prediction:</strong> {prediction}</p>
+          <p className={getResultClass(prediction)}>
+            <strong>Prediction:</strong> {prediction}
+          </p>
           <CSVLink
             data={[["URL", "Prediction"], [url, prediction]]}
             filename="phishing_result.csv"
@@ -42,7 +47,7 @@ const ResultPage = () => {
                 {csvData.map((row, index) => (
                   <tr key={index}>
                     <td>{row.URL}</td>
-                    <td>{row.Prediction}</td>
+                    <td className={getResultClass(row.Prediction)}>{row.Prediction}</td>
                   </tr>
                 ))}
               </tbody>
